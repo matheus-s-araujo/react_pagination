@@ -24,7 +24,11 @@ export const Pagination = ({
           className="page-link"
           href="#prev"
           aria-disabled={currentPage === 1 ? 'true' : 'false'}
-          onClick={() => onPageChange(previousPage())}
+          onClick={() => {
+            if (currentPage > 1) {
+              onPageChange(previousPage());
+            }
+          }}
         >
           «
         </a>
@@ -56,7 +60,11 @@ export const Pagination = ({
           className="page-link"
           href="#next"
           aria-disabled={currentPage === totalPages ? 'true' : 'false'}
-          onClick={() => onPageChange(nextPage())}
+          onClick={() => {
+            if (currentPage < totalPages) {
+              onPageChange(nextPage());
+            }
+          }}
         >
           »
         </a>
