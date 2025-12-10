@@ -1,14 +1,14 @@
 interface PaginationProps {
   total: number;
   perPage: number;
-  currentPage: number;
+  currentPage?: number;
   onPageChange: (page: number) => void;
 }
 
 export const Pagination = ({
   total,
   perPage,
-  currentPage,
+  currentPage = 1,
   onPageChange,
 }: PaginationProps) => {
   const totalPages = Math.ceil(total / perPage);
@@ -43,7 +43,11 @@ export const Pagination = ({
             data-cy="pageLink"
             className="page-link"
             href={`#${page}`}
-            onClick={() => onPageChange(page)}
+            onClick={() => {
+              if (page !== currentPage) {
+                onPageChange(page);
+              }
+            }}
           >
             {page}
           </a>
